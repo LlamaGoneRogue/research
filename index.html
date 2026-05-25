@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aditya Venkat Iyer — Research Portfolio</title>
+<meta name="description" content="High school researcher in computational oncology and machine learning. ASCO 2026 poster presenter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  
+  body {
+    font-family: 'Newsreader', 'Georgia', serif;
+    color: #1a1a1a;
+    background: #FAFAF8;
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  
+  /* HEADER */
+  header {
+    background: linear-gradient(180deg, #fff 0%, #FAFAF8 100%);
+    border-bottom: 1px solid #e8e6e1;
+    padding: 60px 24px 48px;
+  }
+  header .tag {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #2B547E;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  header h1 {
+    font-size: 42px;
+    font-weight: 500;
+    line-height: 1.15;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+  }
+  header .bio {
+    font-size: 19px;
+    color: #555;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 24px;
+    max-width: 560px;
+  }
+  header .meta {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #888;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    gap: 28px;
+    border-bottom: 1px solid #e8e6e1;
+    padding-top: 20px;
+  }
+  nav button {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #888;
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: 8px 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  nav button:hover, nav button.active {
+    color: #1a1a1a;
+    border-bottom-color: #2B547E;
+  }
+
+  /* MAIN */
+  main { padding: 40px 0 80px; }
+
+  .section-title {
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .section-rule {
+    width: 60px;
+    height: 2px;
+    background: #2B547E;
+    margin: 12px 0 24px;
+  }
+
+  /* PAPER CARDS */
+  .paper-card {
+    padding: 28px 32px;
+    background: #fff;
+    border: 1px solid #e8e6e1;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .paper-card:hover {
+    border-color: #2B547E;
+    box-shadow: 0 4px 20px rgba(43, 84, 126, 0.08);
+  }
+  .paper-card.featured { border-left: 4px solid #2B547E; }
+  .paper-card .badge {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    color: #2B547E;
+    background: #eef3f8;
+    padding: 3px 10px;
+    border-radius: 3px;
+  }
+  .paper-card .type {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 8px;
+  }
+  .paper-card h3 {
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 1.45;
+    margin-bottom: 8px;
+  }
+  .paper-card .venue {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.5;
+  }
+
+  /* MENTOR BOX */
+  .mentor-box {
+    margin-top: 32px;
+    padding: 24px 28px;
+    background: #fff;
+    border: 1px solid #e8e6e1;
+    border-radius: 4px;
+  }
+  .mentor-box .label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 10px;
+  }
+  .mentor-box .name { font-size: 16px; font-weight: 600; }
+  .mentor-box .role { font-size: 14px; color: #666; line-height: 1.5; }
+  .mentor-entry { margin-bottom: 16px; }
+  .mentor-entry:last-child { margin-bottom: 0; }
+
+  /* SKILL TAGS */
+  .skill-tag {
+    display: inline-block;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    padding: 6px 14px;
+    border: 1px solid #d4d0c8;
+    border-radius: 20px;
+    margin: 4px 6px 4px 0;
+    color: #555;
+    background: #fff;
+    transition: all 0.2s ease;
+  }
+  .skill-tag:hover {
+    border-color: #2B547E;
+    color: #2B547E;
+    background: #f0f4f8;
+  }
+  .certs {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: #888;
+    margin-top: 12px;
+  }
+
+  /* CTA */
+  .cta {
+    background: #2B547E;
+    color: #fff;
+    padding: 32px 40px;
+    border-radius: 4px;
+    text-align: center;
+    margin-top: 40px;
+  }
+  .cta .cta-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-bottom: 8px;
+  }
+  .cta .cta-text {
+    font-size: 20px;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .cta .cta-sub {
+    font-size: 15px;
+    opacity: 0.8;
+    font-style: italic;
+  }
+
+  /* BACKGROUND TAB */
+  .bg-entry {
+    padding: 20px 0;
+    border-bottom: 1px solid #e8e6e1;
+  }
+  .bg-entry:last-child { border-bottom: none; }
+  .bg-entry h3 { font-size: 17px; font-weight: 500; margin-bottom: 2px; }
+  .bg-entry .sub { font-family: 'DM Sans', sans-serif; font-size: 13px; color: #888; margin-bottom: 8px; }
+  .bg-entry p { font-size: 14px; color: #555; line-height: 1.7; }
+
+  .exp-entry { padding: 16px 0; border-bottom: 1px solid #e8e6e1; }
+  .exp-entry:last-child { border-bottom: none; }
+  .exp-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+  .exp-header h4 { font-size: 15px; font-weight: 500; }
+  .exp-header .date { font-family: 'DM Sans', sans-serif; font-size: 12px; color: #999; }
+  .exp-entry .desc { font-size: 14px; color: #666; line-height: 1.6; margin-top: 4px; }
+
+  .awards p { font-size: 14px; color: #555; line-height: 1.8; }
+
+  /* CONTACT TAB */
+  .contact-intro { font-size: 16px; color: #666; line-height: 1.6; margin-bottom: 32px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 20px;
+    background: #fff;
+    border: 1px solid #e8e6e1;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    margin-bottom: 10px;
+  }
+  .contact-link:hover { border-color: #2B547E; background: #f8fafc; }
+  .contact-link .cl-label { font-weight: 500; }
+  .contact-link .cl-sub { font-size: 13px; color: #888; }
+  .contact-link .cl-icon { font-size: 20px; }
+
+  .asco-box {
+    margin-top: 40px;
+    padding: 32px;
+    background: #fff;
+    border: 1px solid #e8e6e1;
+    border-radius: 4px;
+    text-align: center;
+  }
+  .asco-box .ab-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #999;
+    margin-bottom: 12px;
+  }
+  .asco-box .ab-title { font-size: 22px; font-weight: 500; margin-bottom: 8px; color: #2B547E; }
+  .asco-box .ab-detail { font-size: 14px; color: #666; margin-top: 4px; }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid #e8e6e1;
+    padding: 24px;
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: #aaa;
+  }
+
+  /* ANIMATIONS */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(18px);
+    animation: fadeUp 0.6s ease forwards;
+  }
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  @media (max-width: 640px) {
+    header h1 { font-size: 32px; }
+    .paper-card { padding: 20px; }
+    .paper-card .badge { position: static; margin-bottom: 8px; display: inline-block; }
+    .paper-card h3 { padding-right: 0 !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="tag fade-in" style="animation-delay: 0.1s">Research Portfolio</div>
+    <h1 class="fade-in" style="animation-delay: 0.2s">Aditya Venkat Iyer</h1>
+    <p class="bio fade-in" style="animation-delay: 0.3s">
+      Applying machine learning to clinical oncology — building decision support systems,
+      analyzing real-world evidence, and making cancer care more accessible.
+    </p>
+    <div class="meta fade-in" style="animation-delay: 0.4s">
+      <span>📍 Cary, NC</span>
+      <span>🎓 Green Hope High School · Class of 2027</span>
+      <span>🏅 Rank 1 of 637</span>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <nav class="fade-in" style="animation-delay: 0.5s">
+    <button class="active" onclick="showTab('research', this)">Research</button>
+    <button onclick="showTab('background', this)">Background</button>
+    <button onclick="showTab('contact', this)">Contact</button>
+  </nav>
+</div>
+
+<main class="container">
+
+  <!-- RESEARCH TAB -->
+  <div id="research" class="tab-content active">
+    <h2 class="section-title fade-in" style="animation-delay: 0.1s">Research & Presentations</h2>
+    <div class="section-rule fade-in" style="animation-delay: 0.15s"></div>
+
+    <div class="paper-card featured fade-in" style="animation-delay: 0.2s">
+      <span class="badge">Presenting This Week</span>
+      <div class="type">Poster Presentation · May 30, 2026 · Chicago, IL</div>
+      <h3 style="padding-right: 120px">Machine Learning–Based Decision Support for ICU Admission in Febrile Oncology Patients: Optimizing Care Delivery and Resource Allocation</h3>
+      <div class="venue">ASCO 2026 Annual Meeting · Abstract #1598 · Care Delivery / Models of Care</div>
+    </div>
+
+    <div class="paper-card fade-in" style="animation-delay: 0.35s">
+      <div class="type">Publication · 2025</div>
+      <h3>Outcomes of Later-Line Systemic Therapies in Malignant Peripheral Nerve Sheath Tumors (MPNST)</h3>
+      <div class="venue">Co-authored clinical outcomes research · Multidisciplinary clinical research team</div>
+    </div>
+
+    <div class="paper-card fade-in" style="animation-delay: 0.5s">
+      <div class="type">Conference Presentation · February 2026</div>
+      <h3>Fixed-Dose Bevacizumab & First-Line PFS in a Biosimilars-Exclusive Oncology Practice</h3>
+      <div class="venue">Ocean Road Cancer Institute 30th Anniversary International Conference · Dar es Salaam, Tanzania</div>
+    </div>
+
+    <div class="mentor-box fade-in" style="animation-delay: 0.6s">
+      <div class="label">Research Mentors</div>
+      <div class="mentor-entry">
+        <div class="name">Dr. Vishwanath Sathyanarayanan</div>
+        <div class="role">Lead Oncosciences & Senior Consultant, Dept. of Medical Oncology, Apollo Hospitals, Bangalore<br>Managing Trustee & Founder, CPOEM Foundation</div>
+      </div>
+      <div class="mentor-entry">
+        <div class="name">Dr. Neeta Somaiah</div>
+        <div class="role">Chair, Sarcoma Medical Oncology, Division of Cancer Medicine<br>University of Texas MD Anderson Cancer Center, Houston</div>
+      </div>
+    </div>
+
+    <div class="fade-in" style="animation-delay: 0.7s; margin-top: 32px">
+      <h3 class="section-title" style="font-size: 18px">Technical Skills</h3>
+      <div class="section-rule"></div>
+      <div>
+        <span class="skill-tag">Machine Learning</span>
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">Clinical Data Analysis</span>
+        <span class="skill-tag">Statistical Modeling</span>
+        <span class="skill-tag">Data Science</span>
+        <span class="skill-tag">Real-World Evidence</span>
+        <span class="skill-tag">Decision Support Systems</span>
+      </div>
+      <div class="certs">AWS Certified: Cloud Practitioner · AI Practitioner · ML Associate (Summer 2026)</div>
+    </div>
+
+    <div class="cta fade-in" style="animation-delay: 0.8s">
+      <div class="cta-label">Open to Collaboration</div>
+      <div class="cta-text">Seeking research collaborations in computational oncology, clinical ML, and real-world evidence analysis.</div>
+      <div class="cta-sub">Available for summer and ongoing remote research · Entering senior year, Fall 2026</div>
+    </div>
+  </div>
+
+  <!-- BACKGROUND TAB -->
+  <div id="background" class="tab-content">
+    <h2 class="section-title">Academic Background</h2>
+    <div class="section-rule"></div>
+
+    <div class="bg-entry">
+      <h3>Green Hope High School</h3>
+      <div class="sub">Cary, NC · Class of 2027</div>
+      <p>Weighted GPA: 4.808 · Unweighted: 4.000 · Rank: 1 of 637 (Valedictorian)</p>
+      <p>13 AP courses completed, 5 planned for senior year</p>
+      <p>SAT: 1530 (sophomore year)</p>
+    </div>
+    <div class="bg-entry">
+      <h3>NC School of Science and Mathematics</h3>
+      <div class="sub">Online Program · 2025–2027</div>
+      <p>Honors Molecular Genetics (A) · Honors Data Science (A)</p>
+      <p>Senior year: Cancer Biology, Linear Algebra I & II</p>
+      <p>Cumulative GPA: 5.000</p>
+    </div>
+    <div class="bg-entry">
+      <h3>Wake Technical Community College</h3>
+      <div class="sub">Dual Enrollment · 2023–2026</div>
+      <p>Business Core Certificate earned</p>
+      <p>6 college courses completed · Cumulative GPA: 5.000 (weighted)</p>
+    </div>
+    <div class="bg-entry">
+      <h3>North Carolina State University</h3>
+      <div class="sub">Summer 2026</div>
+      <p>MA 242 Calculus III (4 credits, in progress)</p>
+    </div>
+
+    <h3 class="section-title" style="font-size: 18px; margin-top: 32px">Experience</h3>
+    <div class="section-rule"></div>
+
+    <div class="exp-entry">
+      <div class="exp-header">
+        <h4>Summer Intern — Oncominds, Inc.</h4>
+        <span class="date">Summer 2026</span>
+      </div>
+      <div class="desc">Developing an ELI5 solution to help cancer patients understand their diagnosis and care plans in plain language</div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-header">
+        <h4>Intern (Part-time, Remote) — CPOEM Foundation</h4>
+        <span class="date">Apr 2023 – Present</span>
+      </div>
+      <div class="desc">IT, digital marketing, website management, social media outreach, and ASCO booth operations</div>
+    </div>
+    <div class="exp-entry">
+      <div class="exp-header">
+        <h4>Research Intern — RSYEP</h4>
+        <span class="date">Summers 2024 & 2025</span>
+      </div>
+      <div class="desc">Competitive summer research and enrichment program; Shark Tank participant (2025)</div>
+    </div>
+
+    <h3 class="section-title" style="font-size: 18px; margin-top: 32px">Competitions & Awards</h3>
+    <div class="section-rule"></div>
+    <div class="awards">
+      <p>Congressional App Challenge — Runner-up (2025–26), Top 10 Finalist (2024–25)</p>
+      <p>FBLA State Leadership Conference — Top 10 in Data Science & AI; Top 10 in Cybersecurity</p>
+      <p>Wharton Global HS Investment Competition — Team Captain (2025)</p>
+      <p>Wharton Data Science Competition — Team Lead (2026)</p>
+      <p>Gold President's Volunteer Service Award — 219+ total hours, Cary Teen Council</p>
+      <p>Eastern Regional Orchestra — Selected by audition, 2nd Violin</p>
+    </div>
+  </div>
+
+  <!-- CONTACT TAB -->
+  <div id="contact" class="tab-content">
+    <h2 class="section-title">Get in Touch</h2>
+    <div class="section-rule"></div>
+    <p class="contact-intro">
+      I'm actively seeking research collaborations in computational oncology, clinical ML,
+      and real-world evidence analysis. Available for summer and ongoing remote opportunities.
+    </p>
+
+    <a href="mailto:adityaiyer.avi@gmail.com" class="contact-link">
+      <span class="cl-icon">✉️</span>
+      <div>
+        <div class="cl-label">adityaiyer.avi@gmail.com</div>
+        <div class="cl-sub">Email</div>
+      </div>
+    </a>
+
+    <a href="https://www.linkedin.com/in/adityavi" target="_blank" rel="noopener" class="contact-link">
+      <span class="cl-icon">🔗</span>
+      <div>
+        <div class="cl-label">LinkedIn</div>
+        <div class="cl-sub">linkedin.com/in/adityavi</div>
+      </div>
+    </a>
+
+    <a href="tel:9193064879" class="contact-link">
+      <span class="cl-icon">📱</span>
+      <div>
+        <div class="cl-label">(919) 306-4879</div>
+        <div class="cl-sub">Phone</div>
+      </div>
+    </a>
+
+    <div class="contact-link">
+      <span class="cl-icon">📍</span>
+      <div>
+        <div class="cl-label">Cary, NC 27519</div>
+        <div class="cl-sub">Location</div>
+      </div>
+    </div>
+
+    <div class="asco-box">
+      <div class="ab-label">Currently Presenting At</div>
+      <div class="ab-title">ASCO 2026 Annual Meeting</div>
+      <div class="ab-detail">Poster Session · May 30, 2026 · 9:00 AM – 12:00 PM</div>
+      <div class="ab-detail">Abstract #1598 · Chicago, IL</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>Aditya Venkat Iyer · Green Hope High School · Class of 2027</footer>
+
+<script>
+function showTab(id, btn) {
+  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
